@@ -446,7 +446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
   playerName: Nova
   health: 100
-  rotationSpeed: 0
+  rotationSpeed: 50
   size: 1
   aliveState: 1
 --- !u!1660057539 &9223372036854775807
