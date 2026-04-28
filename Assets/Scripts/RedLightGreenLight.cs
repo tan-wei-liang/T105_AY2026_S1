@@ -43,6 +43,11 @@ public class RedLightGreenLight : MonoBehaviour
 		// TODO:
 		// If the light is red and the player is moving,
 		// make the player lose
+		if (!greenLight && player.isMoving)
+		{
+			playerDied = true;
+			player.GameOver();
+		}
 
 		UpdateTrafficLightVisual();
     }
