@@ -22,19 +22,29 @@ public class RedLightGreenLight : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        // TODO:
-        // If the light is green and the timer reaches greenTime,
-        // switch to red and reset the timer
+		// TODO:
+		// If the light is green and the timer reaches greenTime,
+		// switch to red and reset the timer
+		if (greenLight && timer >= greenTime)
+		{
+			greenLight = false;
+			timer = 0f;
+		}
 
-        // TODO:
-        // Else if the light is red and the timer reaches redTime,
-        // switch to green and reset the timer
+		// TODO:
+		// Else if the light is red and the timer reaches redTime,
+		// switch to green and reset the timer
+		else if (!greenLight && timer >= redTime)
+		{
+			greenLight = true;
+			timer = 0f;
+		}
 
-        // TODO:
-        // If the light is red and the player is moving,
-        // make the player lose
+		// TODO:
+		// If the light is red and the player is moving,
+		// make the player lose
 
-        UpdateTrafficLightVisual();
+		UpdateTrafficLightVisual();
     }
 
     void UpdateTrafficLightVisual()
