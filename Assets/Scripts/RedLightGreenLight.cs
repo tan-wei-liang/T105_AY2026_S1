@@ -47,6 +47,7 @@ public class RedLightGreenLight : MonoBehaviour
 		{
 			playerDied = true;
 			player.GameOver();
+            Debug.Log("You lose! Restart game to play again!");
 		}
 
 		UpdateTrafficLightVisual();
