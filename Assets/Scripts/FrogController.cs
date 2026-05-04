@@ -61,5 +61,11 @@ public class FrogController : MonoBehaviour
 		{
 			transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
 		}
+		// Move player rightt when D key is held down
+		if (Input.GetKey(KeyCode.D))
+		{
+			transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+		}
+
 	}
 }
