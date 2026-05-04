@@ -41,5 +41,17 @@ public class FrogController : MonoBehaviour
 				rb.AddForce(Vector2.up * holdForce, ForceMode2D.Force);
 			}
 		}
+
+		// Condition will be true on the frame that space
+		// button was released
+		if (Input.GetKeyUp(KeyCode.Space))
+		{
+			// Half frog's upwards speed by half when space button is released
+			// Frog will start falling faster
+			if (rb.linearVelocity.y > 0)
+			{
+				rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
+			}
+		}
 	}
 }
