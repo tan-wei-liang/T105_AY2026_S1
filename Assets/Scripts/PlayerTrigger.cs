@@ -10,7 +10,12 @@ public class PlayerTrigger : MonoBehaviour
         if (other.CompareTag("Key"))
         {
             // TODO: Set hasKey to true
+            hasKey  = true;
             // TODO: Destroy the key object
+            // As PlayerTrigger is a component of Player,
+            // other will refer to the object that the
+            // player came in contact with in this frame
+            Destroy(other.gameObject);
         }
 
         // TODO: Check if player touched the Door
