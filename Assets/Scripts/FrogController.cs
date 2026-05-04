@@ -54,5 +54,12 @@ public class FrogController : MonoBehaviour
 				rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
 			}
 		}
+
+		// Move player left when A key is held down
+		// Displacement = velocity * time
+		if (Input.GetKey(KeyCode.A))
+		{
+			transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+		}
 	}
 }
