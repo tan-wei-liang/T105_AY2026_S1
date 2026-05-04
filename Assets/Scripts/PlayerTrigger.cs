@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerTrigger : MonoBehaviour
@@ -23,9 +24,16 @@ public class PlayerTrigger : MonoBehaviour
         {
             // TODO: If player has key
             // open the door
-
+            if(hasKey)
+            {
+                Destroy(other.gameObject);
+            }
             // TODO: Else
             // show message in Console
+            else
+            {
+                Debug.Log("To open the door, you need a key!");
+            }
         }
     }
 }
