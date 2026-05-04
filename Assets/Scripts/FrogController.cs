@@ -15,6 +15,12 @@ public class FrogController : MonoBehaviour
 
     private void Update()
     {
-        
-    }
+        // Condition will be true on the frame that space
+        // button was pressed and false for the following
+        // frames that the button is held
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+
+		}
+	}
 }
