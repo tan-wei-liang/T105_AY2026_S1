@@ -7,6 +7,7 @@ public class FrogController : MonoBehaviour
     public float maxUpwardVelocity	= 8f;
 
 	public float dashForce			= 5.0f;
+	public KeyCode dashKey			= KeyCode.LeftControl;
 	SpriteRenderer spriteRenderer	= null;
 
     private Rigidbody2D rb;
@@ -20,8 +21,8 @@ public class FrogController : MonoBehaviour
     private void Update()
     {
 		ProcessDirectionKeys();
-		ProcessShiftKey();
-		ProcessSpaceKey();
+		ProcessDash();
+		ProcessJump();
 	}
 
 	// Handles logic related to keys bound to Horizontal axis in
@@ -30,29 +31,29 @@ public class FrogController : MonoBehaviour
 	// Sets sprite's flipX to false if right is pressed
 	void ProcessDirectionKeys()
 	{
-		float horizontalInput = Input.GetAxis("Horizontal");
+		float horizontalInput	= Input.GetAxis("Horizontal");
 		if (horizontalInput == 0.0f)
 		{
 			return;
 		}
 
-		spriteRenderer.flipX = (horizontalInput < 0.0f) ? true : false;
+		spriteRenderer.flipX	= (horizontalInput < 0.0f) ? true : false;
 	}
 
 	// Handles logic related to Shift key
 	// Rigidbody2D will dash in the direction the sprite is facing
-	void ProcessShiftKey()
+	void ProcessDash()
 	{
-		if(Input.GetKeyDown(KeyCode.LeftShift))
+		if(Input.GetKeyDown(dashKey))
 		{
-			Vector3 dirDashForce = transform.right * dashForce * (spriteRenderer.flipX ? -1.0f : 1.0f);
+			Vector3 dirDashForce	= transform.right * dashForce * (spriteRenderer.flipX ? -1.0f : 1.0f);
 			rb.AddForce(dirDashForce, ForceMode2D.Impulse);
 		}
 	}
 
 	// Encapsulation of previous body of Update()
 	// Handles logic related to Space key
-	void ProcessSpaceKey()
+	void ProcessJump()
 	{
 		// Condition will be true on the frame that space
 		// button was pressed and false for the following
