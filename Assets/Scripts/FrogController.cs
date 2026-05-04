@@ -20,7 +20,10 @@ public class FrogController : MonoBehaviour
         // frames that the button is held
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-
+			// Adds specified force to rigidbody in a single frame
+			// ForceMode2D.Impulse is usually used for explosions 
+            // and simulating jumps
+			rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 		}
 	}
 }
