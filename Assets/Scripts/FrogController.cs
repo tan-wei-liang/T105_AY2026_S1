@@ -2,17 +2,21 @@ using UnityEngine;
 
 public class FrogController : MonoBehaviour
 {
-    public float jumpForce = 5f;
-    public float holdForce = 10f;
-    public float maxUpwardVelocity = 8f;
-	public float moveSpeed = 5f;
+    public float jumpForce			= 5f;
+    public float holdForce			= 10f;
+    public float maxUpwardVelocity	= 8f;
+	public float moveSpeed			= 5f;
+
+	public float sprintSpeed		= 10.0f;
+	float actualMoveSpeed			= 0.0f;
 
 	private Rigidbody2D rb;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-    }
+        rb				= GetComponent<Rigidbody2D>();
+		actualMoveSpeed = moveSpeed;
+	}
 
     private void Update()
     {
@@ -59,12 +63,23 @@ public class FrogController : MonoBehaviour
 		// Displacement = velocity * time
 		if (Input.GetKey(KeyCode.A))
 		{
-			transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+			transform.Translate(Vector2.left * actualMoveSpeed * Time.deltaTime);
 		}
 		// Move player rightt when D key is held down
 		if (Input.GetKey(KeyCode.D))
 		{
-			transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+			transform.Translate(Vector2.right * actualMoveSpeed * Time.deltaTime);
+		}
+
+		// Change actualMoveSpeed to use sprintSpeed
+		if (Input.GetKeyDown(KeyCode.LeftShift))
+		{
+			actualMoveSpeed = sprintSpeed;
+		}
+		// Change actualMoveSpeed to use moveSpeed
+		if (Input.GetKeyUp(KeyCode.LeftShift))
+		{
+			actualMoveSpeed = moveSpeed;
 		}
 
 	}
