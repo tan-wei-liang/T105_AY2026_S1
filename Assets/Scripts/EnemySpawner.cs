@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -7,11 +8,15 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab   = null;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+	int x	= 0;
+	int y	= 0;
+
+	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	void Start()
+	{
+		x	= 3;
+		y	= 3;
+	}
 
     // Update is called once per frame
     void Update()
@@ -28,12 +33,15 @@ public class EnemySpawner : MonoBehaviour
 	void SpawnEnemies()
     {
 		//Step 9: Add the For Loop
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < x; i++)
         {
-			//Step 10: Create a Position for Each Enemy
-			Vector3 position = new Vector3(i * 2, 0, 0);
-			//Step 11: Spawn the Enemy
-			Instantiate(enemyPrefab, position, Quaternion.identity);
+			for (int j = 0; j < y; j++)
+			{
+				//Step 10: Create a Position for Each Enemy
+				Vector3 position = new Vector3(i * 2, j * 2, 0);
+				//Step 11: Spawn the Enemy
+				Instantiate(enemyPrefab, position, Quaternion.identity);
+			}
 		}
 	}
 }
