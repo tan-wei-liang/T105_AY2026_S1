@@ -21,6 +21,8 @@ public class PlayerChoice : MonoBehaviour
 		}
 
 		// TODO: Generate AI choice using Random.Range()
+		int aiMove = Random.Range(0, 3);
+		Debug.Log(aiMove);
 
 		// TODO: Compare player vs AI (Win / Lose / Draw)
 
