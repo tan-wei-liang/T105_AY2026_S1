@@ -23,9 +23,9 @@ public class ForExample : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
-        
-    }
+	{
+		UpdateCountText();
+	}
 
     // Update is called once per frame
     void Update()

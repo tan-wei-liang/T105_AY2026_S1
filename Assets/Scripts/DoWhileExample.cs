@@ -28,19 +28,12 @@ public class DoWhileExample : MonoBehaviour
 		// Ensure that scaledSize, initialSize are positive
 		scaledSize                      = Mathf.Abs(scaledSize);
 		initialSize                     = Mathf.Abs(initialSize);
-		// Ensure that scaledSize is bigger than initialSize,
-		// Otherwise flip the values
-		//if (scaledSize < initialSize)
-  //      {
-  //          float tempSize            = scaledSize;
-  //          scaledSize                = initialSize;
-  //          initialSize               = tempSize;
-  //      }
         // Ensure that scaleSpeed is negative
 		scaleSpeed                      = -Mathf.Abs(scaleSpeed);
 		// Ensure that transform is set to initialSize
 		transformToScale.localScale     = Vector3.one * initialSize;
-    }
+        UpdateDoWhileText();
+	}
 
 	// Update is called once per frame
 	void Update()
