@@ -258,6 +258,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WhileExample
   whileText: {fileID: 1457670093}
   tagToCompare: Player
+  isUsingCoroutine: 0
+  coroutineInterval: 0.01
 --- !u!61 &110487511
 BoxCollider2D:
   m_ObjectHideFlags: 0
