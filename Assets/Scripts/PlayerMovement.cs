@@ -16,11 +16,11 @@ public class PlayerMovement : MonoBehaviour
     {
 		if (isUsingAxes)
 		{
-			ProcessKeys_WASD();
+			ProcessAxes_Movement();
 		}
 		else
 		{
-			ProcessAxes_Movement();
+			ProcessKeys_WASD();
 		}
 	}
 
