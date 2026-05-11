@@ -2,8 +2,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed	= 5.0f;
-	public bool isUsingAxes = false;
+    public float moveSpeed		= 5.0f;
+	public bool isUsingAxes		= false;
+
+	private SpriteRenderer sr	= null;
+
+	void Start()
+	{
+		sr	= GetComponent<SpriteRenderer>();
+	}
 
     void Update()
     {
@@ -19,8 +26,13 @@ public class PlayerMovement : MonoBehaviour
 
 	void ProcessAxes_Movement()
 	{
-		Vector2 movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+		Vector2 movementInput	= new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 		transform.Translate(movementInput * moveSpeed * Time.deltaTime);
+
+		if(movementInput.x != 0.0f)
+		{
+			sr.flipX = movementInput.x > 0.0f ? false : true;
+		}
 	}
 
 	void ProcessKeys_WASD()
@@ -28,11 +40,13 @@ public class PlayerMovement : MonoBehaviour
 		if (Input.GetKey(KeyCode.A))
 		{
 			transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+			sr.flipX	= true;
 		}
 
 		if (Input.GetKey(KeyCode.D))
 		{
 			transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+			sr.flipX	= false;
 		}
 		// TODO: Add movement for W
 		if (Input.GetKey(KeyCode.W))
