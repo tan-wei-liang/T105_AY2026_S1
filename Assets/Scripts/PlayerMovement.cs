@@ -15,13 +15,17 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
         }
-        // TODO: Add movement for W
 
+		// TODO: Add movement for W
+		if (Input.GetKey(KeyCode.W))
+		{
+			transform.Translate(Vector2.up * moveSpeed * Time.deltaTime);
+		}
 
-
-        // TODO: Add movement for S
-
-
-
-    }
+		// TODO: Add movement for S
+		if (Input.GetKey(KeyCode.S))
+		{
+			transform.Translate(Vector2.down * moveSpeed * Time.deltaTime);
+		}
+	}
 }
