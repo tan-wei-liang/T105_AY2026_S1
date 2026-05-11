@@ -1580,6 +1580,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 4826731495033600322, guid: 8d2e21a1375a6f942b422b76b516d2f2, type: 3}
   xInputField: {fileID: 1921731099}
   yInputField: {fileID: 1053352688}
+  positionOffset: {x: 1.5, y: 1.5}
 --- !u!1 &1606538881
 GameObject:
   m_ObjectHideFlags: 0

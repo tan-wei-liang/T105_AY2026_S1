@@ -14,7 +14,9 @@ public class EnemySpawner : MonoBehaviour
 
 	int x	= 0;
 	int y	= 0;
-	GameObject container = null;
+	GameObject container	= null;
+	[SerializeField]
+	Vector2 positionOffset	= Vector2.one;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
@@ -40,14 +42,18 @@ public class EnemySpawner : MonoBehaviour
 
 	//Step 8: Add a Spawn Method, create the method
 	void SpawnEnemies()
-    {
+	{
+		float initialX	= (x - 1) * positionOffset.x * -0.5f;
+		float initialY	= (y - 1) * positionOffset.y * -0.5f;
 		//Step 9: Add the For Loop
 		for (int i = 0; i < x; i++)
         {
+			float posX = initialX + positionOffset.x * i;
 			for (int j = 0; j < y; j++)
 			{
+				float posY = initialY + positionOffset.y * j;
 				//Step 10: Create a Position for Each Enemy
-				Vector3 position = new Vector3(i * 2, j * 2, 0);
+				Vector3 position = new Vector3(posX, posY, 0);
 				//Step 11: Spawn the Enemy
 				Instantiate(enemyPrefab, position, Quaternion.identity, container.transform);
 			}
