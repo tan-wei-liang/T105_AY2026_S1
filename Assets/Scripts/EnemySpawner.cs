@@ -7,15 +7,24 @@ using UnityEngine.Rendering;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab   = null;
+	[SerializeField]
+	TMP_InputField xInputField		= null;
+	[SerializeField]
+	TMP_InputField yInputField		= null;
 
 	int x	= 0;
 	int y	= 0;
+	GameObject container = null;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
 	{
-		x	= 3;
-		y	= 3;
+		x	= int.Parse(xInputField.text);
+		y	= int.Parse(yInputField.text);
+		xInputField.onValueChanged.AddListener(OnGridSizeChanged);
+		yInputField.onValueChanged.AddListener(OnGridSizeChanged);
+
+		CreateSpawnContainer();
 	}
 
     // Update is called once per frame
@@ -40,8 +49,26 @@ public class EnemySpawner : MonoBehaviour
 				//Step 10: Create a Position for Each Enemy
 				Vector3 position = new Vector3(i * 2, j * 2, 0);
 				//Step 11: Spawn the Enemy
-				Instantiate(enemyPrefab, position, Quaternion.identity);
+				Instantiate(enemyPrefab, position, Quaternion.identity, container.transform);
 			}
 		}
+	}
+
+	void OnGridSizeChanged(string newValue)
+	{
+		x	= int.Parse(xInputField.text);
+		y	= int.Parse(yInputField.text);
+	}
+
+	public void ResetSpawns()
+	{
+		Destroy(container);
+		CreateSpawnContainer();
+	}
+
+	void CreateSpawnContainer()
+	{
+		container	= Instantiate(new GameObject(), transform);
+		container.name = "Container";
 	}
 }
