@@ -25,6 +25,24 @@ public class PlayerChoice : MonoBehaviour
 		Debug.Log(aiMove);
 
 		// TODO: Compare player vs AI (Win / Lose / Draw)
+		if (playerMove == aiMove)
+		{
+			Debug.Log("Draw");
+		}
+		// Player: Rock (0),		AI: Paper (1),		Difference = -1
+		// Player: Paper (1),		AI: Scissors (2),	Difference = -1
+		// Player: Scissors (2),	AI: Rock (0),		Difference = 2
+		else if (playerMove - aiMove == -1 || playerMove - aiMove == 2)
+		{
+			Debug.Log("Win");
+		}
+		// Player: Rock (0),		AI: Scissors (2),	Difference = -2
+		// Player: Paper (1),		AI: Rock (0),		Difference = 1
+		// Player: Scissors (2),	AI: Paper (1),		Difference = 1
+		else
+		{
+			Debug.Log("Lose");
+		}
 
 		// TODO: Update round
 
