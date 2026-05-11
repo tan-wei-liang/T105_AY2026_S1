@@ -30,12 +30,12 @@ public class PlayerChoice : MonoBehaviour
 
 		// TODO: Generate AI choice using Random.Range()
 		int aiMove = Random.Range(0, 3);
-		Debug.Log(aiMove);
+		Debug.Log($"AI Move: {aiMove}");
 
 		// TODO: Compare player vs AI (Win / Lose / Draw)
 		if (playerMove == aiMove)
 		{
-			Debug.Log("Draw");
+			Debug.Log($"Round {round}: Draw");
 			draw++;
 		}
 		// Player: Rock (0),		AI: Paper (1),		Difference = -1
@@ -43,7 +43,7 @@ public class PlayerChoice : MonoBehaviour
 		// Player: Scissors (2),	AI: Rock (0),		Difference = 2
 		else if (playerMove - aiMove == -1 || playerMove - aiMove == 2)
 		{
-			Debug.Log("Win");
+			Debug.Log($"Round {round}: Win");
 			win++;
 		}
 		// Player: Rock (0),		AI: Scissors (2),	Difference = -2
@@ -51,7 +51,7 @@ public class PlayerChoice : MonoBehaviour
 		// Player: Scissors (2),	AI: Paper (1),		Difference = 1
 		else
 		{
-			Debug.Log("Lose");
+			Debug.Log($"Round {round}: Lose");
 			lose++;
 		}
 
