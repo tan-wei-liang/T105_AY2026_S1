@@ -26,9 +26,20 @@ public class PlayerChoice : MonoBehaviour
 
 	Vector2 initialPosition = Vector2.zero;
 
+	PlayerMovement pm			= null;
+	[SerializeField]
+	GameObject playerChoice		= null;
+	[SerializeField]
+	GameObject choiceRock		= null;
+	[SerializeField]
+	GameObject choicePaper		= null;
+	[SerializeField]
+	GameObject choiceScissors	= null;
+
 	void Start()
 	{
 		initialPosition	= transform.position;
+		pm				= GetComponent<PlayerMovement>();
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
@@ -36,15 +47,22 @@ public class PlayerChoice : MonoBehaviour
 		// TODO: Detect Rock / Paper / Scissors
 		if (other.CompareTag("Rock"))
 		{
-			playerMove = 0;
+			playerMove		= 0;
+			playerChoice	= choiceRock;
 		}
 		else if (other.CompareTag("Paper"))
 		{
-			playerMove = 1;
+			playerMove		= 1;
+			playerChoice	= choicePaper;
 		}
 		else if (other.CompareTag("Scissors"))
 		{
-			playerMove = 2;
+			playerMove		= 2;
+			playerChoice	= choiceScissors;
+		}
+		else
+		{
+			return;
 		}
 
 		// TODO: Generate AI choice using Random.Range()
@@ -102,7 +120,10 @@ public class PlayerChoice : MonoBehaviour
 		round++;
 		// reset position
 		transform.position	= initialPosition;
-
+		// lock input to prevent movement for a while
+		pm.LockInput();
+		// show choice
+		playerChoice.SetActive(true);
 
 		// TODO: Display result using Debug.Log()
 		if (round >= maxRounds)
@@ -110,5 +131,10 @@ public class PlayerChoice : MonoBehaviour
 			Debug.Log("Game Over!");
 			Debug.Log($"Results: {win} Win(s), {lose} Lose(s), {draw} Draw(s) ");
 		}
+	}
+
+	public void HideChoice()
+	{
+		playerChoice.SetActive(false);
 	}
 }
