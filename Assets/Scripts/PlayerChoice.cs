@@ -43,16 +43,16 @@ public class PlayerChoice : MonoBehaviour
 		// Player: Scissors (2),	AI: Rock (0),		Difference = 2
 		else if (playerMove - aiMove == -1 || playerMove - aiMove == 2)
 		{
-			Debug.Log($"Round {round}: Win");
-			win++;
+			Debug.Log($"Round {round}: Lose");
+			lose++;
 		}
 		// Player: Rock (0),		AI: Scissors (2),	Difference = -2
 		// Player: Paper (1),		AI: Rock (0),		Difference = 1
 		// Player: Scissors (2),	AI: Paper (1),		Difference = 1
 		else
 		{
-			Debug.Log($"Round {round}: Lose");
-			lose++;
+			Debug.Log($"Round {round}: Win");
+			win++;
 		}
 
 		// TODO: Update round
