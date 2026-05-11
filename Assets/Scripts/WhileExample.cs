@@ -15,6 +15,8 @@ public class WhileExample : MonoBehaviour
 	[SerializeField]
 	float coroutineInterval = 0.05f;
 	string coroutineName	= "CoroutineUpdate";
+	[SerializeField]
+	bool isDebug			= false;
 
 	float timer             = 0.0f;
     bool isInBoundaries     = false;
@@ -89,7 +91,7 @@ public class WhileExample : MonoBehaviour
 		}
 
 		UpdateWhileText();
-		Debug.Log("Update in NonCoroutineUpdate()");
+		PrintDebugLog();
 	}
 
 	IEnumerator CoroutineUpdate()
@@ -100,7 +102,7 @@ public class WhileExample : MonoBehaviour
 			{
 				timer += coroutineInterval;
 				UpdateWhileText();
-				Debug.Log("Update in CoroutineUpdate()");
+				PrintDebugLog();
 			}
 			yield return new WaitForSeconds(coroutineInterval);
 		}
@@ -117,5 +119,22 @@ public class WhileExample : MonoBehaviour
 		// the float displayed.
 		float truncatedTimer	= (int)(timer * 100) / 100.0f;
 		whileText.text			= $"While Timer: {truncatedTimer}";
+	}
+
+	void PrintDebugLog()
+	{
+		if(!isDebug)
+		{
+			return;
+		}
+
+		if(isUsingCoroutine)
+		{
+			Debug.Log("Update in CoroutineUpdate()");
+		}
+        else
+		{
+			Debug.Log("Update in NonCoroutineUpdate()");
+		}
 	}
 }
