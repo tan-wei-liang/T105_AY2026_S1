@@ -30,10 +30,11 @@ public class PlayerChoice : MonoBehaviour
 		{
 			playerMove = 2;
 		}
+		Debug.Log($"Player chose {MoveToString(playerMove)}.");
 
 		// TODO: Generate AI choice using Random.Range()
 		int aiMove = Random.Range(0, 3);
-		Debug.Log(aiMove);
+		Debug.Log($"AI chose {MoveToString(aiMove)}.");
 
 		// Difference between playerMove and aiMove can be used to 
 		// determine result of each round
