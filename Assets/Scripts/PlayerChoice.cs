@@ -15,18 +15,12 @@ public class PlayerChoice : MonoBehaviour
 	// Variable to store AI's moves from round 0 to maxRound
 	int aiMoves		= 0;
 
-	public GameObject currentChoice		= null;
-	public GameObject choiceRock		= null;
-	public GameObject choicePaper		= null;
-	public GameObject choiceScissors	= null;
 	PlayerMovement playerMovement		= null;
+	public ChoiceDisplay playerDisplay	= null;
+	public ChoiceDisplay aiDisplay		= null;
 
 	void Start()
 	{
-		// Ensure that the following choices are not showing when game starts
-		choiceRock.SetActive(false);
-		choicePaper.SetActive(false);
-		choiceScissors.SetActive(false);
 		playerMovement	= GetComponent<PlayerMovement>();
 	}
 
@@ -36,17 +30,14 @@ public class PlayerChoice : MonoBehaviour
 		if (other.CompareTag("Rock"))
 		{
 			playerMove		= 0;
-			currentChoice	= choiceRock;
 		}
 		else if (other.CompareTag("Paper"))
 		{
 			playerMove		= 1;
-			currentChoice	= choicePaper;
 		}
 		else if (other.CompareTag("Scissors"))
 		{
 			playerMove		= 2;
-			currentChoice	= choiceScissors;
 		}
 		Debug.Log($"Player chose {MoveToString(playerMove)}.");
 
@@ -105,7 +96,8 @@ public class PlayerChoice : MonoBehaviour
 		// TODO: Update round
 		round++;
 		// show choice
-		currentChoice.SetActive(true);
+		playerDisplay.UpdateChoice(playerMove);
+		aiDisplay.UpdateChoice(aiMove);
 		playerMovement.LockInput();
 
 		// TODO: Display result using Debug.Log()
@@ -154,10 +146,5 @@ public class PlayerChoice : MonoBehaviour
 			moveString		= "Scissors";
 		}
 		return moveString;
-	}
-
-	public void HideChoice()
-	{
-		currentChoice.SetActive(false);
 	}
 }
