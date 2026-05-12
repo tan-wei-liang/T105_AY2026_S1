@@ -119,10 +119,10 @@ TextureImporter:
       name: scissor_icon_0
       rect:
         serializedVersion: 2
-        x: 200
+        x: 229
         y: 196
-        width: 677
-        height: 687
+        width: 620
+        height: 688
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c45aab84dce580344b93b7a67dbdedc7
+    spriteID: 15e85b4708978da46956a3b631cf6ba3
     internalID: 0
     vertices: []
     indices: 

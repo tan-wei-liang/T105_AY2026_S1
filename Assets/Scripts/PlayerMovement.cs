@@ -2,86 +2,69 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-	public float moveSpeed	= 5.0f;
-	public bool isUsingAxes	= false;
+    public float moveSpeed          = 5f;
+    SpriteRenderer spriteRenderer   = null;
+    
+    public float inputLockDuration  = 1.0f;
+    float inputLockCountdown        = 0.0f;
+    Vector3 initialPosition         = Vector3.zero;
 
-	private SpriteRenderer sr	= null;
+    bool isInputDisabled    = false;
 
-	[SerializeField]
-	float inputLockDuration		= 1.0f;
-	float inputLockCountdown	= 0.0f;
 
-	PlayerChoice pc	= null;
-
-	void Start()
-	{
-		sr	= GetComponent<SpriteRenderer>();
-		pc	= GetComponent<PlayerChoice>();
+    void Start()
+    {
+        spriteRenderer  = GetComponent<SpriteRenderer>();
+		initialPosition = transform.position;
 	}
 
-	void Update()
-	{
+    void Update()
+    {
+        if (isInputDisabled)
+        {
+            return;
+        }
+
+		// Lock input while inputLockCountdown still bigger than 0.0f
 		if (inputLockCountdown > 0.0f)
-		{
-			inputLockCountdown	-= Time.deltaTime;
-			return;
+        {
+            inputLockCountdown -= Time.deltaTime;
+            return;
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+            spriteRenderer.flipX    = true;
 		}
 
-		if (isUsingAxes)
-		{
-			ProcessAxes_Movement();
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+            spriteRenderer.flipX    = false;
 		}
-		else
-		{
-			ProcessKeys_WASD();
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.Translate(Vector2.up * moveSpeed * Time.deltaTime);
 		}
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.Translate(Vector2.down * moveSpeed * Time.deltaTime);
+		}
+    }
+
+    public void LockInput()
+    {
+        // lock input for an interval to ensure previous choice is visible
+        inputLockCountdown  = inputLockDuration;
+        // reset position so that it is easier to select the next choice
+        transform.position      = initialPosition;
 	}
 
-	void ProcessAxes_Movement()
-	{
-		Vector2 movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-		transform.Translate(movementInput * moveSpeed * Time.deltaTime);
-
-		if (movementInput.x != 0.0f)
-		{
-			sr.flipX = movementInput.x > 0.0f ? false : true;
-			pc.HideChoice();
-		}
-	}
-
-	void ProcessKeys_WASD()
-	{
-		if (Input.GetKey(KeyCode.A))
-		{
-			transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
-			sr.flipX = true;
-			pc.HideChoice();
-		}
-
-		if (Input.GetKey(KeyCode.D))
-		{
-			transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
-			sr.flipX = false;
-			pc.HideChoice();
-		}
-
-		// TODO: Add movement for W
-		if (Input.GetKey(KeyCode.W))
-		{
-			transform.Translate(Vector2.up * moveSpeed * Time.deltaTime);
-			pc.HideChoice();
-		}
-
-		// TODO: Add movement for S
-		if (Input.GetKey(KeyCode.S))
-		{
-			transform.Translate(Vector2.down * moveSpeed * Time.deltaTime);
-			pc.HideChoice();
-		}
-	}
-
-	public void LockInput()
-	{
-		inputLockCountdown = inputLockDuration;
+    public void DisableInput(bool isDisable)
+    {
+		isInputDisabled = isDisable;
 	}
 }
