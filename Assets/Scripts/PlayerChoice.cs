@@ -6,6 +6,10 @@ public class PlayerChoice : MonoBehaviour
 	public int round		= 0;
 	public int maxRounds	= 3;
 
+	public int win	= 0;
+	public int lose = 0;
+	public int draw = 0;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
 		// TODO: Detect Rock / Paper / Scissors
@@ -36,21 +40,25 @@ public class PlayerChoice : MonoBehaviour
 		// Player: Scissors (2),	AI: Scissors (2),	Difference = 0
 		if (difference == 0)
 		{
-			Debug.Log("Draw");
+			Debug.Log($"Round {round}: Draw");
+			draw++;
+
 		}
 		// Player: Rock (0),		AI: Scissors (2),	Difference = -2
 		// Player: Paper (1),		AI: Rock (0),		Difference = 1
 		// Player: Scissors (2),	AI: Paper (1),		Difference = 1
 		else if (difference == 1 || difference == -2)
 		{
-			Debug.Log("Win");
+			Debug.Log($"Round {round}: Win");
+			win++;
 		}
 		// Player: Rock (0),		AI: Paper (1),		Difference = -1
 		// Player: Paper (1),		AI: Scissors (2),	Difference = -1
 		// Player: Scissors (2),	AI: Rock (0),		Difference = 2
 		else
 		{
-			Debug.Log("Lose");
+			Debug.Log($"Round {round}: Lose");
+			lose++;
 		}
 
 		// TODO: Update round
@@ -60,6 +68,7 @@ public class PlayerChoice : MonoBehaviour
 		if (round >= maxRounds)
 		{
 			Debug.Log("Game Over!");
+			Debug.Log($"Results: {win} Win(s), {lose} Lose(s), {draw} Draw(s) ");
 		}
 	}
 }
