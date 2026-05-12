@@ -142,7 +142,7 @@ public class ResultDisplay : MonoBehaviour
         roundInfoInstance.transform.localPosition   = spawnPos;
 
         RoundInfoDisplay roundInfoDisplay           = roundInfoInstance.GetComponent<RoundInfoDisplay>();
-        roundInfoDisplay.SetDisplay(round, playerMoves % 10, aiMoves % 10, results % 10);
+        roundInfoDisplay.SetDisplay(round + 1, playerMoves % 10, aiMoves % 10, results % 10);
 
         playerMoves /= 10;
 		aiMoves     /= 10;
