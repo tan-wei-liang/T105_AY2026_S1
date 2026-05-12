@@ -1,8 +1,10 @@
 using UnityEngine;
 
 public class PlayerChoice : MonoBehaviour
-{
-    public int playerMove = -1;
+{    
+	public int playerMove	= -1;
+	public int round		= 0;
+	public int maxRounds	= 3;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -52,7 +54,12 @@ public class PlayerChoice : MonoBehaviour
 		}
 
 		// TODO: Update round
+		round++;
 
 		// TODO: Display result using Debug.Log()
+		if (round >= maxRounds)
+		{
+			Debug.Log("Game Over!");
+		}
 	}
 }
