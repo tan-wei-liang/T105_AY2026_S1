@@ -123,6 +123,7 @@ public class PlayerChoice : MonoBehaviour
 			Debug.Log($"Round {round}: Draw");
 			resultText.text	= "Draw";
 			draw++;
+			results += 1 * (int)Mathf.Pow(10.0f, round);
 		}
 		// Player: Rock (0),		AI: Scissors (2),	Difference = -2
 		// Player: Paper (1),		AI: Rock (0),		Difference = 1
@@ -132,7 +133,7 @@ public class PlayerChoice : MonoBehaviour
 			Debug.Log($"Round {round}: Win");
 			resultText.text = "Win";
 			win++;
-			results	+= 1 * (int)Mathf.Pow(10.0f, round);
+			results	+= 2 * (int)Mathf.Pow(10.0f, round);
 		}
 		// Player: Rock (0),		AI: Paper (1),		Difference = -1
 		// Player: Paper (1),		AI: Scissors (2),	Difference = -1
@@ -142,7 +143,7 @@ public class PlayerChoice : MonoBehaviour
 			Debug.Log($"Round {round}: Lose");
 			resultText.text = "Lose";
 			lose++;
-			results += 2 * (int)Mathf.Pow(10.0f, round);
+			results += 3 * (int)Mathf.Pow(10.0f, round);
 		}
 
 		// Store Player and AI moves

@@ -56,15 +56,15 @@ public class RoundInfoDisplay : MonoBehaviour
 			aiScissors.SetActive(true);
 		}
 
-		if (result == 0)
+		if (result == 1)
 		{
 			resultText.text	= "Draw";
 		}
-		else if (result == 1)
+		else if (result == 2)
 		{
 			resultText.text = "Win";
 		}
-		else if (result == 2)
+		else if (result == 3)
 		{
 			resultText.text = "Lose";
 		}

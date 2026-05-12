@@ -120,7 +120,7 @@ public class ResultDisplay : MonoBehaviour
 
     void AddRoundInfo()
     {
-        if(playerMoves == 0)
+        if(results == 0)
         {
 			isDoneAddingRoundInfo   = true;
             instructionsText.text   = restartInstructions;
