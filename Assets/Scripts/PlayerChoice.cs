@@ -15,20 +15,38 @@ public class PlayerChoice : MonoBehaviour
 	// Variable to store AI's moves from round 0 to maxRound
 	int aiMoves		= 0;
 
-    private void OnTriggerEnter2D(Collider2D other)
+	public GameObject currentChoice		= null;
+	public GameObject choiceRock		= null;
+	public GameObject choicePaper		= null;
+	public GameObject choiceScissors	= null;
+	PlayerMovement playerMovement		= null;
+
+	void Start()
+	{
+		// Ensure that the following choices are not showing when game starts
+		choiceRock.SetActive(false);
+		choicePaper.SetActive(false);
+		choiceScissors.SetActive(false);
+		playerMovement	= GetComponent<PlayerMovement>();
+	}
+
+	private void OnTriggerEnter2D(Collider2D other)
     {
 		// TODO: Detect Rock / Paper / Scissors
 		if (other.CompareTag("Rock"))
 		{
-			playerMove = 0;
+			playerMove		= 0;
+			currentChoice	= choiceRock;
 		}
 		else if (other.CompareTag("Paper"))
 		{
-			playerMove = 1;
+			playerMove		= 1;
+			currentChoice	= choicePaper;
 		}
 		else if (other.CompareTag("Scissors"))
 		{
-			playerMove = 2;
+			playerMove		= 2;
+			currentChoice	= choiceScissors;
 		}
 		Debug.Log($"Player chose {MoveToString(playerMove)}.");
 
@@ -86,6 +104,9 @@ public class PlayerChoice : MonoBehaviour
 
 		// TODO: Update round
 		round++;
+		// show choice
+		currentChoice.SetActive(true);
+		playerMovement.LockInput();
 
 		// TODO: Display result using Debug.Log()
 		if (round >= maxRounds)
@@ -133,5 +154,10 @@ public class PlayerChoice : MonoBehaviour
 			moveString		= "Scissors";
 		}
 		return moveString;
+	}
+
+	public void HideChoice()
+	{
+		currentChoice.SetActive(false);
 	}
 }
