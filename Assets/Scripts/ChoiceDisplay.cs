@@ -17,7 +17,7 @@ public class ChoiceDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void UpdateChoice(int choice)
@@ -47,5 +47,10 @@ public class ChoiceDisplay : MonoBehaviour
 		currentChoice.SetActive(false);
 		currentChoice	= choiceUnknown;
 		currentChoice.SetActive(true);
+	}
+
+	public void HideChoice()
+	{
+		currentChoice.SetActive(false);
 	}
 }

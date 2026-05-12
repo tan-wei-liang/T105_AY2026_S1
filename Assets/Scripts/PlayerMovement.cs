@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     float inputLockCountdown        = 0.0f;
     Vector3 initialPosition         = Vector3.zero;
 
+    bool isInputDisabled    = false;
+
 
     void Start()
     {
@@ -18,6 +20,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (isInputDisabled)
+        {
+            return;
+        }
+
 		// Lock input while inputLockCountdown still bigger than 0.0f
 		if (inputLockCountdown > 0.0f)
         {
@@ -54,5 +61,10 @@ public class PlayerMovement : MonoBehaviour
         inputLockCountdown  = inputLockDuration;
         // reset position so that it is easier to select the next choice
         transform.position      = initialPosition;
+	}
+
+    public void DisableInput(bool isDisable)
+    {
+		isInputDisabled = isDisable;
 	}
 }
