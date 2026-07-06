@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3be1646f26951949a7be3e0203cfbd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
-  zombiePrefab: {fileID: 0}
+  zombiePrefab: {fileID: 3376609984306136824, guid: c7c6b66fbed3ddf4dbffe34a39a27bf0, type: 3}
   spawnTime: 1
   spawnDelay: 1
   stopSpawning: 0
