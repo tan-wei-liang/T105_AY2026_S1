@@ -24,6 +24,9 @@ public class ZombieMovement : MonoBehaviour
 	}
 	private void OnMouseDown()
 	{
+		// add score inside ScoreSystem class
+		ScoreSystem.score++;
+
 		// remove zombie when clicked
 		Destroy(gameObject);
 	}
