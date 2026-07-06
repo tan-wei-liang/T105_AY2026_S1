@@ -23,9 +23,18 @@ public class Slot : MonoBehaviour
         }
     }
 
-    //TODO: Create a method to drop an item from this slot
-    //TODO: Iterate through each child Transform (item) in this slot
-    //TODO: For each child, call SpawnDroppedItem() on its Spawn component
-    //TODO: Destroy the item GameObject after dropping
-    
+	//TODO: Create a method to drop an item from this slot
+	public void DropItem()
+	{
+		//TODO: Iterate through each child Transform (item) in this slot
+		foreach (Transform child in transform)
+		{
+			//TODO: For each child, call SpawnDroppedItem() on its Spawn component
+
+			//TODO: Destroy the item GameObject after dropping
+			Destroy(child.gameObject);
+		}
+		//mark this slot as not full
+		inventory.isFull[index] = false;
+	}
 }
