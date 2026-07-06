@@ -22,4 +22,9 @@ public class ZombieMovement : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
+	private void OnMouseDown()
+	{
+		// remove zombie when clicked
+		Destroy(gameObject);
+	}
 }
