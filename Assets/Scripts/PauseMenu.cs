@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -38,4 +39,10 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale  = 1.0f;
         isPaused        = false;
 	}
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1.0f;  //ensure game is not paused
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
