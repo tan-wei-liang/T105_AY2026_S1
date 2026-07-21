@@ -6,6 +6,9 @@ public class CollectItem : MonoBehaviour
     {
         if (collision.CompareTag("Collectible"))
         {
+            // Use this instead as FindFirstObjectByType is marked as obselete.
+            // There will be only 1 GameUI so function will always return the same GameUI.
+            FindAnyObjectByType<GameUI>().AddScore();
             Destroy(collision.gameObject);
         }   
     }
