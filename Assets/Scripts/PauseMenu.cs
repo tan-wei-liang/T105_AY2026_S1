@@ -27,11 +27,15 @@ public class PauseMenu : MonoBehaviour
 
 	private void PauseGame()
 	{
-		throw new NotImplementedException();
+        pausePanel.SetActive(true);
+        Time.timeScale  = 0.0f;
+        isPaused        = true;
 	}
 
 	private void ResumeGame()
 	{
-		throw new NotImplementedException();
+        pausePanel.SetActive(false);
+        Time.timeScale  = 1.0f;
+        isPaused        = false;
 	}
 }
